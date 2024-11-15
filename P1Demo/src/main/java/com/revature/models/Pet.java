@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
+import java.util.Hashtable;
+
 @Entity //This Class will be a DB table thanks to Spring Data JPA
 @Table(name = "pets") //This lets us change the name of our DB table
 @Component //1 of 4 stereotype annotations. Registers this class as a Spring Bean
@@ -18,6 +20,7 @@ public class Pet {
 
     @Column(nullable = false)
     private String name;
+
 
     /*Primary Key / Foreign Key relationship!! (Many to One)
 
