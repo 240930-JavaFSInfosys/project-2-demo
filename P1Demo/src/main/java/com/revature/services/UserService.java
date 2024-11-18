@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /*What is the Service layer?? It's also known as the "Business Logic Layer" because...
 
@@ -87,7 +88,7 @@ public class UserService {
     }
 
     //This method updates a user's role in the DB (need to supply user id and new role)
-    public User updateUserRole(int userId, String newRole){
+    public User updateUserRole(UUID userId, String newRole){
 
         //TODO: error handling - make sure the role is valid (non-empty, and either "user" or "admin")
 
@@ -110,7 +111,7 @@ public class UserService {
     }
 
     //This method deletes a User from the DB
-    public User deleteUserById(int userId){
+    public User deleteUserById(UUID userId){
 
         //TODO: error handling - make sure the user id is > 0
 

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service //Makes a class a bean. Stereotype annotation.
 public class PetService {
@@ -36,7 +37,7 @@ public class PetService {
         //petId will be generated (so 0 is just a placeholder)
         //species and name come from the DTO
         //user will be set with the userId in the DTO
-        Pet newPet = new Pet(0, petDTO.getSpecies(), petDTO.getName(), null);
+        Pet newPet = new Pet(null, petDTO.getSpecies(), petDTO.getName(), null);
 
         //Use the UserDAO to get a User by id
         Optional<User> u = uDAO.findById(petDTO.getUserId());
@@ -65,7 +66,7 @@ public class PetService {
     }
 
     //This method gets all pets by userId
-    public List<Pet> getPetsByUserId(int userId){
+    public List<Pet> getPetsByUserId(UUID userId){
 
         //TODO: error handling - incoming id, make sure user exists, make sure > 0 pets returned etc
 
@@ -74,7 +75,7 @@ public class PetService {
     }
 
     //method that deletes pets by id
-    public void deletePetById(int petId){
+    public void deletePetById(UUID petId){
 
         //delete pet by id
         pDAO.deleteById(petId);

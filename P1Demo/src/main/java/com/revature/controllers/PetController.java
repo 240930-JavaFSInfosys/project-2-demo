@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController //Combines @Controller and @ResponseBody
 @RequestMapping("/pets") //any HTTP request with "/pets" will go here
@@ -45,7 +46,7 @@ public class PetController {
 
     //A method that gets all Pets by UserId
     @GetMapping("/user/{userId}") //GET requests to /pets/user/{userId} will come here
-    public ResponseEntity<List<Pet>> getPetsByUserId(@PathVariable int userId){
+    public ResponseEntity<List<Pet>> getPetsByUserId(@PathVariable UUID userId){
 
         //Another one liner
         return ResponseEntity.ok(petService.getPetsByUserId(userId));
@@ -54,7 +55,7 @@ public class PetController {
 
     //delete pet by id
     @DeleteMapping("/{petId}")
-    public ResponseEntity<String> deletePetById(@PathVariable int petId){
+    public ResponseEntity<String> deletePetById(@PathVariable UUID petId){
         petService.deletePetById(petId);
         return ResponseEntity.ok("Pet with id " + petId + " has been deleted");
     }

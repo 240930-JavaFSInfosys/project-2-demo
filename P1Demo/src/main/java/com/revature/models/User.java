@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component //This Class will be registered as a Spring Bean
 @Entity //This Class will be created as a table in the DB (In other words, a DB ENTITY)
@@ -12,8 +13,8 @@ import java.util.List;
 public class User {
 
     @Id //This makes the field the primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //This makes our PK auto-increment (like serial)
-    private int userId;
+    @GeneratedValue(strategy = GenerationType.UUID) //This makes our PK auto-increment (like serial)
+    private UUID userId;
 
     /* @Column isn't necessary UNLESS you want to set a name, or set constraints
        -nullable = NOT NULL constraint
@@ -45,18 +46,18 @@ public class User {
 
     public User() {}
 
-    public User(int userId, String username, String password, String role) {
+    public User(UUID userId, String username, String password, String role) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.role = role;
     }
 
-    public int getUserId() {
+    public UUID getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(UUID userId) {
         this.userId = userId;
     }
 

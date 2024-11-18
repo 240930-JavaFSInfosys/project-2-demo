@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Hashtable;
+import java.util.UUID;
 
 @Entity //This Class will be a DB table thanks to Spring Data JPA
 @Table(name = "pets") //This lets us change the name of our DB table
@@ -12,8 +13,8 @@ import java.util.Hashtable;
 public class Pet {
 
     @Id //This is the primary key field
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //Makes a serial incrementing PK
-    private int petId;
+    @GeneratedValue(strategy = GenerationType.UUID) //Makes a serial incrementing PK
+    private UUID petId;
 
     @Column(nullable = false)
     private String species;
@@ -39,18 +40,18 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(int petId, String species, String name, User user) {
+    public Pet(UUID petId, String species, String name, User user) {
         this.petId = petId;
         this.species = species;
         this.name = name;
         this.user = user;
     }
 
-    public int getPetId() {
+    public UUID getPetId() {
         return petId;
     }
 
-    public void setPetId(int petId) {
+    public void setPetId(UUID petId) {
         this.petId = petId;
     }
 

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController //Combines @Controller (makes a class a bean) @ResponseBody(HTTP response body -> JSON)
 @RequestMapping("/users") //All HTTP Requests made to /users will hit this Controller
@@ -69,7 +70,7 @@ public class UserController {
     //A method that updates a User's role
     @AdminOnly //ONLY ADMINS CAN DO THIS (See the AuthAspect)
     @PatchMapping("/{userId}") //PATCH requests to /users/{userId} will come here
-    public ResponseEntity<User> updateUserRole(@PathVariable int userId, @RequestBody String newRole){
+    public ResponseEntity<User> updateUserRole(@PathVariable UUID userId, @RequestBody String newRole){
 
         //send back a 202 (ACCEPTED) with the User returned from the Service as the Response Body
         return ResponseEntity.status(202).body(userService.updateUserRole(userId, newRole));
@@ -79,7 +80,7 @@ public class UserController {
     //A method that deletes a User by id
     @AdminOnly //ONLY ADMINS CAN DO THIS (See the AuthAspect)
     @DeleteMapping("/{userId}") //DELETE requests to /users/{userId} will come here
-    public ResponseEntity<User> deleteUserById(@PathVariable int userId){
+    public ResponseEntity<User> deleteUserById(@PathVariable UUID userId){
 
         return ResponseEntity.ok(userService.deleteUserById(userId));
 
