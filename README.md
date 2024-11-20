@@ -3,6 +3,8 @@
 ## This is just the P1Demo, but with:
 
 - JWT and Spring Security for auth, security, and password encryption on the backend
+
+  - JWTs are JSON Web Tokens. They're a way to uniquely identify a logged in user, and send a payload containing their specific information. No more sessions!
   - Login and Register require no auth. Login creates and sends a JWT in the response
     - All other requests require a JWT in the Authorization Header of all requests
   - Check the Utils package and application.properties for the JWT and Spring Security configuration
