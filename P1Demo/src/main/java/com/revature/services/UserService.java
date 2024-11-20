@@ -4,6 +4,7 @@ import com.revature.daos.UserDAO;
 import com.revature.models.DTOs.OutgoingUserDTO;
 import com.revature.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,10 +25,14 @@ public class UserService {
     //DEPENDENCY INJECTION! With the @Autowired dependency
     private UserDAO userDAO;
 
+    //Adding a Password Encoder to encrypt passwords
+    private PasswordEncoder passwordEncoder;
+
     //This is CONSTRUCTOR INJECTION (not setter injection, not field injection)
     @Autowired
-    public UserService(UserDAO userDAO) {
+    public UserService(UserDAO userDAO, PasswordEncoder passwordEncoder) {
         this.userDAO = userDAO;
+        this.passwordEncoder = passwordEncoder;
     }
 
     //This method inserts new Users into the DB
@@ -42,6 +47,15 @@ public class UserService {
             //It will be the Controller's job to handle this
             throw new IllegalArgumentException("Username cannot be empty!");
         }
+
+        //PASSWORD ENCRYPTION~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        //Use our password encoder (autowired above) to encrypt the incoming password
+        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+
+        //We're taking the existing password, and setting it to an encrypted one
+
+        //PASSWORD ENCRYPTION~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         //.save() is the JPA method to insert data into the DB. We can also use this for updates
         //It also returns the saved object, so we can just return the method call. Convenient!

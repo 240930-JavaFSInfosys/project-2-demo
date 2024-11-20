@@ -9,6 +9,8 @@ public class OutgoingUserDTO {
     private UUID userId;
     private String username;
     private String role;
+    private String JWT; //now, after login, the user can access their JWT
+    //With their JWT in the Auth header, they can access protected endpoints
 
     //boilerplate-----------------
 
@@ -20,6 +22,14 @@ public class OutgoingUserDTO {
         this.userId = userId;
         this.username = username;
         this.role = role;
+    }
+
+    //New all-args with the JWT field
+    public OutgoingUserDTO(UUID userId, String username, String role, String JWT) {
+        this.userId = userId;
+        this.username = username;
+        this.role = role;
+        this.JWT = JWT;
     }
 
     public UUID getUserId() {
@@ -44,6 +54,14 @@ public class OutgoingUserDTO {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getJWT() {
+        return JWT;
+    }
+
+    public void setJWT(String JWT) {
+        this.JWT = JWT;
     }
 
     @Override

@@ -2,15 +2,21 @@ package com.revature.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
 @Component //This Class will be registered as a Spring Bean
 @Entity //This Class will be created as a table in the DB (In other words, a DB ENTITY)
 @Table(name = "users") //@Table lets us set properties like table name. THIS IS NOT WHAT MAKES IT A TABLE
-public class User {
+public class User implements UserDetails {
+
+    //HI Spring Security^^^ This Class implements UserDetails for use in Spring Security Authentication
+    //Now we can use this Class in our utils (WebSecurityConfig and JwtTokenFilter)
 
     @Id //This makes the field the primary key
     @GeneratedValue(strategy = GenerationType.UUID) //This makes our PK auto-increment (like serial)
@@ -65,9 +71,38 @@ public class User {
         return username;
     }
 
+    //Boilerplate overrides from UserDetails--------------------------
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return UserDetails.super.isAccountNonExpired();
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return UserDetails.super.isAccountNonLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return UserDetails.super.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return UserDetails.super.isEnabled();
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
+    }
+
+    //Boilerplate overrides from UserDetails----------------------------
 
     public String getPassword() {
         return password;
