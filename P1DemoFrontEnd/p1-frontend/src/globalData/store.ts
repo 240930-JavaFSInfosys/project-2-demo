@@ -10,7 +10,8 @@ export const store:any = {
     loggedInUser:{
         userId:0,
         username:"",
-        role:""
+        role:"",
+        jwt:"" //NEED THIS TO STORE THE JWT FOR FUTURE REQUESTS
     }, //We could have modeled this after a UserInterface, but I didn't
 
     //Think about your requirements when it comes to storing global data

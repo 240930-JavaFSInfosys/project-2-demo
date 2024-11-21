@@ -21,7 +21,12 @@ export const PetContainer:React.FC = () => {
 
         //axios GET request 
         //NOTE: using the id of the loggedInUser to get only their pets
-        const response = await axios.get("http://100.27.215.227:7777/pets/user/" + store.loggedInUser.userId)
+        //NOTE NOTE: USING JWT IN THE AXIOS REQUEST NOW! (in the config object)
+        const response = await axios.get("http://localhost:7777/pets/user/" + store.loggedInUser.userId, {
+            headers: {
+                'Authorization':`Bearer ${store.loggedInUser.jwt}`
+            }
+        })
         //TODO: then(), catch() etc
 
         //populate the pets state object
