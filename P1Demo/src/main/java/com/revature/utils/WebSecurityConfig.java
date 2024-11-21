@@ -83,6 +83,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers(new AntPathRequestMatcher("/users/**", HttpMethod.POST.toString())).permitAll()
                                 .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/pets/**").permitAll()
                                 .requestMatchers(new AntPathRequestMatcher("/users/**")).hasAuthority("admin")
                                 .anyRequest().authenticated()
                 )

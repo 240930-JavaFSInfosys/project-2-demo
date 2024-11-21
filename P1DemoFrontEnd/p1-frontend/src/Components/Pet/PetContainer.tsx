@@ -19,6 +19,8 @@ export const PetContainer:React.FC = () => {
     //The function that gets all pets with an axios GET request
     const getPetsByUserId = async () => {
 
+        console.log(store.loggedInUser.jwt)
+
         //axios GET request 
         //NOTE: using the id of the loggedInUser to get only their pets
         //NOTE NOTE: USING JWT IN THE AXIOS REQUEST NOW! (in the config object)
