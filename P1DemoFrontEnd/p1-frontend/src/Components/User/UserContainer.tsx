@@ -21,7 +21,7 @@ export const UserContainer:React.FC = () => {
 
         //axios GET request 
         //NOTE: using the id of the loggedInUser to get only their pets
-        const response = await axios.get("http://localhost:7777/users")
+        const response = await axios.get("http://[EC2 IPV4 HERE]:7777/users")
         //TODO: then(), catch() etc
 
         //populate the pets state object

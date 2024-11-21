@@ -17,7 +17,7 @@ export const UserTable:React.FC<{users:any[]}> = ({users}) => {
     },[])
 
     const deleteUser = async (id:number) => {
-        const response = await axios.delete("http://localhost:7777/users/" + id)
+        const response = await axios.delete("http://[EC2 IPV4 HERE]:7777/users/" + id)
         .then((response) =>{
             alert("deleted")}
         )

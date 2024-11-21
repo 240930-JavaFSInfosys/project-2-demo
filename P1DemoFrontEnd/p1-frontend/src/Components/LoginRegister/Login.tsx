@@ -34,7 +34,7 @@ export const Login:React.FC = () => {
         //TODO: we should make sure the username/password are inputted first
 
         //use the username/password in the loginCreds state object
-        const response = await axios.post("http://localhost:7777/auth", loginCreds, {withCredentials:true})
+        const response = await axios.post("http://localhost:7777/auth", loginCreds)
         .then(
 
             //if the request is successful: 

@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @RestController //Combines @Controller and @ResponseBody
 @RequestMapping("/pets") //any HTTP request with "/pets" will go here
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true") //allows requests from the React app
+@CrossOrigin //allows requests from the React app
 public class PetController {
 
     //Autowire a PetService (with Constructor Injection) to use its method

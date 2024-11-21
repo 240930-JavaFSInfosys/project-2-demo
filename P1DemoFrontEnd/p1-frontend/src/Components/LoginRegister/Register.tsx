@@ -43,7 +43,7 @@ export const Register:React.FC = () => {
         //TODO: check username/password are present
 
         //POST REQUEST - send the new user info to the backend
-        const response = await axios.post("http://localhost:7777/users", user)
+        const response = await axios.post("http://[EC2 IPV4 HERE]:7777/users", user)
         .then(()=>{alert("success!")})
         .catch((error)=>{alert("Failed! " + error.message)})
 
